@@ -1,4 +1,146 @@
-ki ki korte hobe
+git theke namaile ki ki korte hobe{
+1.composer install
+2.copy .env.example .env
+3..env te database name cng korte hobe
+4.php artisan key:generate
+5.if need(php artisan optimize:clear)
+6.npm install
+7.npm run build
+6.php artisan serve
 
-1.multi auth
-2.admin dashboard 
+
+}
+------------------------------------------------------------------------------------------------------------------------------------------
+
+PROJECT ALL STEPS
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+[ MULTI AUTH END]
+
+
+1.migration table e {  $table->enum('role',['admin','manager','user'])->default('user');  }  eita add korci.
+
+2.model e 'role' add korci
+
+3.middleware banaici {    php artisan make:middleware Role  }
+
+4. middilweree eita add korci [
+ 
+        if ($request->user()->role != $role) {
+            return redirect('dashboard');
+        }
+]
+
+5.bootstrap/app.php te eita add korci [
+
+    ->withMiddleware(function (Middleware $middleware) {
+        $middleware->alias([
+            'role' => \App\Http\Middleware\Role::class,
+        ]);
+    })
+]
+
+6.routes/web.php eitai route bolci{
+
+
+Route::middleware(['auth', 'role:admin'])->group(function(){
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+});
+
+Route::middleware(['auth', 'role:manager'])->group(function(){
+    Route::get('/manager/dashboard', [ManagerController::class, 'dashboard'])->name('manager.dashboard');
+});
+Route::middleware(['auth', 'role:user'])->group(function(){
+    Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+});
+
+
+}
+
+7.Controller bnaici prottek role er jonno alada alada.
+
+8.Controller er vitor view bole deoa {
+
+    public function dashboard()
+    {
+        return view('admin.dashboard');
+    }
+
+}
+
+9.resurces prottek role er dashboard banaite hobe { dashboard.blade.php }
+
+10.AuthenticatedSessionController.php update korci [
+
+
+        $request->authenticate();
+
+         $url = "dashboard";
+
+        if ($request->user()->role == "admin") {
+            $url = "admin/dashboard";
+        } else if($request->user()->role == "manager"){
+            $url = "manager/dashboard";
+        }else if($request->user()->role == "user"){
+            $url = "user/dashboard";
+        }
+
+        // return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended($url);
+
+]
+
+11.seeder banao { php artisan make:seeder UserSeeder }
+
+12.database/seeders/UserSeeder.php e edit korci [
+
+public function run(): void
+    {
+        
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('123456'),
+            'role' => 'admin'
+        ]);
+
+        User::create([
+            'name' => 'Manager',
+            'email' => 'manager@gmail.com',
+            'password' => Hash::make('123456'),
+            'role' => 'manager'
+        ]);
+
+        User::create([
+            'name' => 'User',
+            'email' => 'user@gmail.com',
+            'password' => Hash::make('123456'),
+            'role' => 'user'
+        ]);
+    }
+
+]
+
+13.Now let's run seeder: { php artisan db:seed --class=UserSeeder }
+
+14.role er name/email show korar jonno [  {{auth()->user()->name}}   ]
+
+15. fake User banana [ factory(10)->create(); eita dia auto generate hoi {php artisan db:seed} ]
+
+[ MULTI AUTH END]
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+ki ki korte hobe project e
+
+1. multi auth
+2. admin dashboard 
+
