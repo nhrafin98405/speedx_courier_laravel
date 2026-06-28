@@ -6,7 +6,10 @@ git theke namaile ki ki korte hobe{
 5.if need(php artisan optimize:clear)
 6.npm install
 7.npm run build
-6.php artisan serve
+8.php artisan serve
+9.php artisan migrate
+10.debugbar install korar code { composer require fruitcake/laravel-debugbar --dev }
+
 
 
 }
@@ -141,6 +144,9 @@ public function run(): void
 
 ki ki korte hobe project e
 
-1. multi auth
-2. admin dashboard 
+1. multi auth @
+2. admin dashboard @
+3.onno table er sathe relation nai amon db tabil e crud operation calao
+4.3.onno table er sathe relation ache amon db tabil e crud operation calao
+
 
