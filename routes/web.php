@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HubController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\ParcelController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +26,11 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::resource('parcel',ParcelController::class);
+    Route::resource('hub',HubController::class);
+
+    
+
 });
 
 Route::middleware(['auth', 'role:manager'])->group(function(){
