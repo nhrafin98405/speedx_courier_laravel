@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HubController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ParcelController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,7 +29,12 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::resource('parcel',ParcelController::class);
-    Route::resource('hub',HubController::class);
+    Route::resource('hub', HubController::class);
+    Route::get('/hub/status/{hub}', [HubController::class, 'status'])->name('hub.status');
+    Route::resource('booking', BookingController::class);
+    Route::resource('users', UsersController::class);
+    
+    
 
     
 

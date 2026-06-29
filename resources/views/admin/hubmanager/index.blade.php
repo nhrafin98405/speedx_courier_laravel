@@ -14,7 +14,7 @@
                         </div>
 
                         <a href="{{ route('parcel.create') }}" class="btn btn-light ms-auto">
-                            <i class="bx bx-plus me-1"></i> New Parcel
+                            <i class='bx bx-plus-circle'></i> New Parcel
                         </a>
                     </div>
 

@@ -2,134 +2,181 @@
 
 
 @section('content')
-<div class="row">
-    <div class="col-xl-8 mx-auto">
+    <div class="page-wrapper">
+        <div class="page-content">
 
-        <h6 class="mb-0 text-uppercase">Create New Hub</h6>
-        <hr>
 
-        <div class="card border-top border-0 border-4 border-white">
-            <div class="card-body p-4">
+            <form action="{{ route('hub.store') }}" method="POST">
+                @csrf
 
-                <form action="{{ route('hub.store') }}" method="POST">
-                    @csrf
+                <div class="card border-top border-0 border-4 border-white">
+                    <div class="card-body p-4">
 
-                    <!-- Hub Information -->
-                    <div class="card-title d-flex align-items-center mb-3">
-                        <div>
-                            <i class="bx bx-buildings me-2 font-22 text-white"></i>
-                        </div>
-                        <h5 class="mb-0 text-white">Hub Information</h5>
-                    </div>
+                        <!-- ================= Hub Details ================= -->
 
-                    <div class="row g-3">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h4 class="text-white mb-0">
+                                <i class="bx bx-buildings "></i>
+                                Hub Details
+                            </h4>
 
-                        <div class="col-md-6">
-                            <label class="form-label">Hub Name</label>
-                            <input type="text" name="name" class="form-control">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Hub Code</label>
-                            <input type="text" name="code" class="form-control">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Phone</label>
-                            <input type="text" name="phone" class="form-control">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">District</label>
-                            <input type="text" name="district" class="form-control">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Area</label>
-                            <input type="text" name="area" class="form-control">
-                        </div>
-
-                        <div class="col-12">
-                            <label class="form-label">Address</label>
-                            <textarea name="address" class="form-control" rows="3"></textarea>
-                        </div>
-
-                    </div>
-
-                    <hr class="my-4">
-
-                    <!-- Hub Manager -->
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-
-                        <div class="card-title d-flex align-items-center mb-0">
-                            <div>
-                                <i class="bx bxs-user me-2 font-22 text-white"></i>
+                            <div class="form-check form-switch">
+                                <input type="checkbox" id="hubSwitch" checked>
+                                <label class="form-check-label" for="hubSwitch">
+                                    Create Hub
+                                </label>
                             </div>
-                            <h5 class="mb-0 text-white">Hub Manager</h5>
                         </div>
 
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox"
-                                   id="createManager" name="create_manager" checked>
+                        <div id="hubSection">
 
-                            <label class="form-check-label" for="createManager">
-                                Create Manager Account
-                            </label>
-                        </div>
+                            <div class="row">
 
-                    </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Hub Name</label>
+                                    <input type="text" name="hub_name" class="form-control">
+                                </div>
 
-                    <div id="managerSection">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">District</label>
+                                    <input type="text" name="district" class="form-control">
+                                </div>
 
-                        <div class="row g-3">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Thana / Area</label>
+                                    <input type="text" name="area" class="form-control">
+                                </div>
 
-                            <div class="col-md-6">
-                                <label class="form-label">Manager Name</label>
-                                <input type="text" name="manager_name" class="form-control">
-                            </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Phone</label>
+                                    <input type="text" name="phone" class="form-control">
+                                </div>
 
-                            <div class="col-md-6">
-                                <label class="form-label">Phone</label>
-                                <input type="text" name="manager_phone" class="form-control">
-                            </div>
+                                <div class="col-12 mb-3">
+                                    <label class="form-label">Address</label>
 
-                            <div class="col-md-6">
-                                <label class="form-label">Email</label>
-                                <input type="email" name="manager_email" class="form-control">
-                            </div>
+                                    <textarea class="form-control" rows="3" name="address"></textarea>
+                                </div>
 
-                            <div class="col-md-6">
-                                <label class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Hub Email</label>
+                                    <input type="email" name="hub_email" class="form-control">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Status</label>
+
+                                    <select class="form-select" name="status">
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
+                                    </select>
+
+                                </div>
+
                             </div>
 
                         </div>
 
+                        <hr class="my-4">
+
+                        <!-- ================= Manager ================= -->
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+
+                            <h4 class="text-white mb-0">
+                                <i class="bx bxs-user "></i>
+                                Hub Manager
+                            </h4>
+
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="managerSwitch" checked>
+
+                                <label class="form-check-label" for="managerSwitch">
+                                    Create new manager account
+                                </label>
+                            </div>
+
+                        </div>
+
+                        <div id="managerSection">
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        Manager Full Name
+                                    </label>
+
+                                    <input type="text" name="manager_name" class="form-control">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        Manager Phone
+                                    </label>
+
+                                    <input type="text" name="manager_phone" class="form-control">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        Login Email
+                                    </label>
+
+                                    <input type="email" name="manager_email" class="form-control">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        Password (Min 6)
+                                    </label>
+
+                                    <input type="password" name="password" class="form-control">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-light">
+
+                                <i class="bx bx-plus"></i>
+                                Create Hub
+
+                            </button>
+                        </div>
+
                     </div>
+                </div>
 
-                    <div class="mt-4 text-end">
-                        <button type="submit" class="btn btn-light px-5">
-                            <i class="bx bx-plus me-1"></i> Create Hub
-                        </button>
-                    </div>
+            </form>
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
 
-                </form>
+                    const hubSwitch = document.getElementById("hubSwitch");
+                    const managerSwitch = document.getElementById("managerSwitch");
 
-            </div>
+                    const hubSection = document.getElementById("hubSection");
+                    const managerSection = document.getElementById("managerSection");
+
+                    // Initial State
+                    hubSection.hidden = !hubSwitch.checked;
+                    managerSection.hidden = !managerSwitch.checked;
+
+                    // Hub Toggle
+                    hubSwitch.addEventListener("change", function() {
+                        hubSection.hidden = !this.checked;
+                    });
+
+                    // Manager Toggle
+                    managerSwitch.addEventListener("change", function() {
+                        managerSection.hidden = !this.checked;
+                    });
+
+                });
+            </script>
+
         </div>
-
     </div>
-</div>
-
-<script>
-document.getElementById('createManager').addEventListener('change', function () {
-    document.getElementById('managerSection').style.display =
-        this.checked ? 'block' : 'none';
-});
-</script>
 @endsection

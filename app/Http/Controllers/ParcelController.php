@@ -15,6 +15,7 @@ class ParcelController extends Controller
     {
         $parcel = Parcel::all();
         return view('admin.parcel.index', ['items' => $parcel]);
+        
     }
 
     /**
@@ -34,7 +35,9 @@ class ParcelController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        // dd(auth()->id());
         Parcel::create([
+
             'tracking_id' => 'SPX' . rand(100000, 999999),
 
             'sender_name' => $request->sender_name,
@@ -57,7 +60,8 @@ class ParcelController extends Controller
             'booked_by' => auth()->id(),
         ]);
 
-        return redirect()->back()->with('success', 'Parcel Booked Successfully');
+        return redirect()->route('parcel.index')
+                 ->with('success', 'Parcel Booked Successfully');
     }
 
     /**

@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Hub extends Model
 {
     protected $fillable = [
-    'name',
-    'code',
-    'district',
-    'area',
-    'address',
-    'phone',
-    'email',
-    'status',
+        'name',
+        'code',
+        'district',
+        'area',
+        'address',
+        'phone',
+        'email',
+        'status',
     ];
 
     public function senderParcels()
@@ -31,6 +31,11 @@ public function users()
 {
     return $this->hasMany(User::class);
 }
+    public function manager()
+    {
+        return $this->hasOne(User::class, 'hub_id')
+                    ->where('role', 'manager');
+    }
 
 
 }

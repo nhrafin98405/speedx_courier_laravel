@@ -10,12 +10,10 @@
 
                     <div class="d-flex align-items-center">
                         <div>
-                            <h5 class="mb-0">All Parcels ({{ $items->count() }})</h5>
+                            <h5 class="mb-0">Resent Bookings</h5>
                         </div>
 
-                        <a href="{{ route('parcel.create') }}" class="btn btn-light ms-auto">
-                            <i class="bx bx-plus me-1"></i> New Parcel
-                        </a>
+                        
                     </div>
 
                     <hr>
@@ -28,10 +26,9 @@
                                     <th class="text-center text-uppercase">Tracking</th>
                                     <th class="text-center text-uppercase">Sender</th>
                                     <th class="text-center text-uppercase">Receiver</th>
-                                    <th class="text-center text-uppercase">From</th>
-                                    <th class="text-center text-uppercase">To</th>
-                                    <th class="text-center text-uppercase">Status</th>
                                     <th class="text-center text-uppercase">Amount</th>
+                                    <th class="text-center text-uppercase">Status</th>
+                                    
                                     <th class="text-center text-uppercase">Date</th>
                                     {{-- <th class="text-center">Action</th> --}}
                                 </tr>
@@ -46,9 +43,7 @@
 
                                         <td class="text-center">{{ $item->receiver_name }}</td>
 
-                                        <td class="text-center">{{ $item->senderHub->name ?? '-' }}</td>
-
-                                        <td class="text-center">{{ $item->receiverHub->name ?? '-' }}</td>
+                                        <td class="text-center">৳{{ $item->delivery_charge }}</td>
 
                                         <td class="text-center">
                                             <div class="badge rounded-pill bg-light px-3 py-2">
@@ -56,27 +51,13 @@
                                             </div>
                                         </td>
 
-                                        <td class="text-center">৳{{ $item->delivery_charge }}</td>
+                                        
 
                                         <td class="text-center">
                                             {{ $item->pickup_date }}
                                         </td>
 
-                                        {{-- <td class="text-center">
-            <div class="d-flex justify-content-center align-items-center gap-3">
-                <a href="{{ route('parcel.edit',$item->id) }}">
-                    <i class="bx bx-edit fs-5"></i>
-                </a>
-
-                <form action="{{ route('parcel.destroy',$item->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="border-0 bg-transparent">
-                        <i class="bx bx-trash fs-5 text-danger"></i>
-                    </button>
-                </form>
-            </div>
-        </td> --}}
+                                       
                                     </tr>
                                 @endforeach
                             </tbody>

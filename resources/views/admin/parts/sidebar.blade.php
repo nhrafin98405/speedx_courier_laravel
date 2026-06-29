@@ -28,7 +28,7 @@
           </li>
 
           <li>
-              <a href="{{ route('parcel.index') }}">
+              <a href="{{ route('booking.index') }}">
                   <div class="parent-icon"><i class='bx bx-calendar-check'></i></div>
                   <div class="menu-title">Bookings</div>
               </a>
@@ -63,7 +63,7 @@
           </li>
 
           <li>
-              <a href="users.php">
+              <a href="{{ route('users.index') }}">
                   <div class="parent-icon"><i class='bx bx-group'></i></div>
                   <div class="menu-title">Users</div>
               </a>

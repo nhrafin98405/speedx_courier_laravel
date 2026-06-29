@@ -10,11 +10,11 @@
 
                     <div class="d-flex align-items-center">
                         <div>
-                            <h5 class="mb-0">All Parcels (1)</h5>
+                            <h5 class="mb-0">All Hub ( {{ $hubs->count() }} )</h5>
                         </div>
 
                         <a href="{{ route('hub.create') }}" class="btn btn-light ms-auto">
-                            <i class="bx bx-plus me-1"></i> New Parcel
+                            <i class='bx bx-plus-circle'></i> Add Hub/Manager
                         </a>
                     </div>
 
@@ -40,40 +40,73 @@
 
                             <tbody>
 
-                                <tr>
-                                    <td class="text-center">GSA</td>
+                                @forelse($hubs as $hub)
+                                    <tr>
 
-                                    <td class="text-center">NHR</td>
+                                        <td class="text-center">{{ $hub->code }}</td>
 
-                                    <td class="text-center">Mymensingh</td>
+                                        <td class="text-center">{{ $hub->name }}</td>
 
-                                    <td class="text-center">Saddar road</td>
+                                        <td class="text-center">{{ $hub->district }}</td>
 
-                                    <td class="text-center">0839254984</td>
+                                        <td class="text-center">{{ $hub->address }}</td>
 
-                                    <td class="text-center">Rafin</td>
+                                        <td class="text-center">{{ $hub->phone }}</td>
 
-                                    <td class="text-center">Active</td>
+                                        <td class="text-center">
+                                            {{ optional($hub->manager)->name ?? 'No Manager' }}
+                                        </td>
 
+                                        <td class="text-center">
+                                            @if ($hub->status == 'active')
+                                                <span class="badge bg-success">Active</span>
+                                            @else
+                                                <span class="badge bg-danger">Inactive</span>
+                                            @endif
+                                        </td>
 
+                                        <td class="text-center">
+                                            <div class="d-flex justify-content-center align-items-center gap-2">
 
-                                    <td class="text-center">
-                                        <div class="d-flex justify-content-center align-items-center gap-3">
-                                            <a href="">
-                                                <i class="bx bx-edit fs-5"></i>
-                                            </a>
+                                                <!-- Edit -->
+                                                <a href="{{ route('hub.edit', $hub->id) }}"
+                                                    class="text-white text-decoration-none">
+                                                    <i class='bx bx-edit-alt fs-5'></i>
+                                                </a>
 
-                                            <form action="" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="border-0 bg-transparent">
-                                                    <i class="bx bx-trash fs-5 text-danger"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                               
+                                                <!-- Delete -->
+                                                <form action="{{ route('hub.destroy', $hub->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button type="submit" class="border-0 bg-transparent text-white p-0">
+                                                        <i class='bx bx-trash fs-5'></i>
+                                                    </button>
+                                                </form>
+
+                                                <!-- Status -->
+                                                <form action="{{ route('hub.status', $hub->id) }}" method="GET">
+                                                    <div class="form-check form-switch m-0">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            onchange="this.form.submit()"
+                                                            {{ $hub->status == 'active' ? 'checked' : '' }}>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                @empty
+
+                                    <tr>
+                                        <td colspan="8" class="text-center">
+                                            No Hub Found
+                                        </td>
+                                    </tr>
+                                @endforelse
+
                             </tbody>
 
                         </table>
