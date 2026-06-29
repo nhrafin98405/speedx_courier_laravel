@@ -19,10 +19,15 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role',
+        
+    'name',
+    'phone',
+    'email',
+    'password',
+    'role',
+    'hub_id',
+    'status',
+
 
     ];
 
@@ -48,4 +53,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function hub()
+{
+    return $this->belongsTo(Hub::class);
+}
 }

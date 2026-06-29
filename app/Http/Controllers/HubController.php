@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
-
 use App\Models\Hub;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class HubController extends Controller
 {
@@ -23,7 +23,7 @@ class HubController extends Controller
     {
         $hubs = Hub::all();
 
-        return view('admin.parcel.create', compact('hubs'));
+        return view('admin.hub.create', compact('hubs'));
     }
 
     /**

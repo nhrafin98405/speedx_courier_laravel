@@ -56,7 +56,7 @@
           </li>
 
           <li>
-              <a href="add-hub.php">
+              <a href="{{ route('hub.create') }}">
                   <div class="parent-icon"><i class='bx bx-plus-circle'></i></div>
                   <div class="menu-title">Add Hub</div>
               </a>

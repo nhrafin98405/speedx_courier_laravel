@@ -13,7 +13,7 @@
                             <h5 class="mb-0">All Parcels (1)</h5>
                         </div>
 
-                        <a href="{{ route('parcel.create') }}" class="btn btn-light ms-auto">
+                        <a href="{{ route('hub.create') }}" class="btn btn-light ms-auto">
                             <i class="bx bx-plus me-1"></i> New Parcel
                         </a>
                     </div>

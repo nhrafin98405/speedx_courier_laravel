@@ -7,7 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Hub extends Model
 {
     protected $fillable = [
-        'name',
+    'name',
+    'code',
+    'district',
+    'area',
+    'address',
+    'phone',
+    'email',
+    'status',
     ];
 
     public function senderParcels()
@@ -19,4 +26,11 @@ public function receiverParcels()
 {
     return $this->hasMany(Parcel::class, 'receiver_hub_id');
 }
+
+public function users()
+{
+    return $this->hasMany(User::class);
+}
+
+
 }
