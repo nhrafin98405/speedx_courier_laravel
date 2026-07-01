@@ -17,7 +17,7 @@
 
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h4 class="text-white mb-0">
-                                <i class="bx bx-buildings text-success"></i>
+                                <i class="bx bx-buildings "></i>
                                 Hub Details
                             </h4>
 
@@ -85,7 +85,7 @@
                         <div class="d-flex justify-content-between align-items-center mb-4">
 
                             <h4 class="text-white mb-0">
-                                <i class="bx bxs-user text-success"></i>
+                                <i class="bx bxs-user "></i>
                                 Hub Manager
                             </h4>
 
@@ -140,7 +140,7 @@
                         </div>
 
                         <div class="mt-4">
-                            <button type="submit" class="btn btn-success px-4 py-2">
+                            <button type="submit" class="btn btn-light ms-auto">
 
                                 <i class="bx bx-plus"></i>
                                 Edit Hub

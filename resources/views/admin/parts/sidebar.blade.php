@@ -70,7 +70,7 @@
           </li>
 
           <li>
-              <a href="hub-managers.php">
+              <a href="{{ route('hubmanager.index') }}">
                   <div class="parent-icon"><i class='bx bx-user-pin'></i></div>
                   <div class="menu-title">Hub Managers</div>
               </a>

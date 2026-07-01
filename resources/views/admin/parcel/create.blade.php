@@ -138,7 +138,7 @@
                                 </div>
 
                                 <div class="mt-4">
-                                    <button type="submit" class="btn btn-light ">
+                                    <button type="submit" class="btn btn-light ms-auto">
                                         <i class="bx bx-save"></i> Book Delivery
                                     </button>
                                 </div>

@@ -79,7 +79,7 @@
                                                     @csrf
                                                     @method('DELETE')
 
-                                                    <button type="submit" class="border-0 bg-transparent text-white p-0">
+                                                    <button onclick="return confirm('Are you sure you want to delete this hub?')" type="submit" class="border-0 bg-transparent text-white p-0">
                                                         <i class='bx bx-trash fs-5'></i>
                                                     </button>
                                                 </form>

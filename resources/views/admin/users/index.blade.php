@@ -41,7 +41,7 @@
                                             <div class="card-body">
 
                                                 <h5 class="mt-3 mb-0">Customers</h5>
-                                                <h3 class="mb-1 mt-4">{{ $customerCount }}</h3>
+                                                <h3 class="mb-1 mt-4">{{ $userCount }}</h3>
 
                                             </div>
                                         </div>
@@ -57,8 +57,8 @@
                                                 <h5 class="mb-0">All Users ({{ $users->count() }})</h5>
                                             </div>
 
-                                            <a href="{{ route('hub.create') }}" class="btn btn-light ms-auto">
-                                                <i class='bx bx-plus-circle'></i> Add Hub/Manager
+                                            <a href="{{ route('users.create') }}" class="btn btn-light ms-auto">
+                                                <i class='bx bx-plus-circle'></i> Add Users
                                             </a>
                                         </div>
 
@@ -70,6 +70,7 @@
                                                 <thead class="table-light">
                                                     <tr>
 
+                                                        <th class="text-center text-uppercase">Photo</th>
                                                         <th class="text-center text-uppercase">name</th>
                                                         <th class="text-center text-uppercase">email</th>
                                                         <th class="text-center text-uppercase">phone</th>
@@ -88,6 +89,15 @@
                                                         <tr>
 
 
+
+                                                            <td class="text-center">
+                                                                @if ($usr->photo)
+                                                                    <img src="{{ asset($usr->photo) }}" width="45"
+                                                                        height="45" class="rounded-circle">
+                                                                @else
+                                                                    No Photo
+                                                                @endif
+                                                            </td>
 
                                                             <td class="text-center">{{ $usr->name }}</td>
 
@@ -125,15 +135,15 @@
                                                                         @csrf
                                                                         @method('DELETE')
 
-                                                                        <button type="submit"
+                                                                        <button onclick="return confirm('Are you sure to delet this student?')" 
                                                                             class="border-0 bg-transparent text-white p-0">
                                                                             <i class='bx bx-trash fs-5'></i>
                                                                         </button>
                                                                     </form>
 
                                                                     <!-- Status -->
-                                                                    <form action="{{ route('hub.status', $usr->id) }}"
-                                                                        method="GET">
+                                                                    <form action="{{ route('users.status', $usr->id) }}" method="POST">
+                                                                        @csrf
                                                                         <div class="form-check form-switch m-0">
                                                                             <input class="form-check-input" type="checkbox"
                                                                                 onchange="this.form.submit()"

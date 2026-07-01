@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HubController;
+use App\Http\Controllers\HubmanagerController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ParcelController;
 use App\Http\Controllers\UserController;
@@ -33,10 +34,9 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/hub/status/{hub}', [HubController::class, 'status'])->name('hub.status');
     Route::resource('booking', BookingController::class);
     Route::resource('users', UsersController::class);
-    
-    
-
-    
+    Route::post('/users/status/{id}', [UsersController::class, 'status'])->name('users.status');
+    Route::resource('hubmanager',HubmanagerController::class);
+    Route::post('/hubmanager/status/{id}', [HubmanagerController::class, 'status'])->name('hubmanager.status');
 
 });
 

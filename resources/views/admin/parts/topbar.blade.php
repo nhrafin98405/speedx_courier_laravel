@@ -581,11 +581,17 @@
 						</ul>
 					</div>
 					<div class="user-box dropdown px-3">
+						@php
+    $user = auth()->user();
+@endphp
 						<a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img src="{{asset('')}}assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
+							
+							@if ($user->photo)
+                                    <img src="{{ asset($user->photo) }}" class="user-img" alt="user avatar">
+                                @endif
 							<div class="user-info">
-								<p class="user-name mb-0">Pauline Seitz</p>
-								<p class="designattion mb-0">{{ auth()->user()->name }}</p>
+								<p class="user-name mb-0">{{ $user->name }}</p>
+								<p class="designattion mb-0">{{ $user->role }}</p>
 							</div>
 						</a>
 						
